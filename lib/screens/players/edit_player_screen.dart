@@ -79,6 +79,7 @@ class _EditPlayerScreenState extends State<EditPlayerScreen> {
         content: const Text(
           'Are you sure you want to delete your account?',
         ),
+        actionsAlignment: MainAxisAlignment.end,
         actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         actions: [
           TextButton(

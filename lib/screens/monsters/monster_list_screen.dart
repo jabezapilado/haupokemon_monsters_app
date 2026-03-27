@@ -46,6 +46,7 @@ class _MonsterListScreenState extends State<MonsterListScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
         title: const Text('Delete Monster'),
         content: const Text('Are you sure you want to delete this monster?'),
+        actionsAlignment: MainAxisAlignment.end,
         actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         actions: [
           TextButton(

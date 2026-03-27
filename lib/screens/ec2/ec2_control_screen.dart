@@ -171,12 +171,17 @@ class _EC2ControlScreenState extends State<EC2ControlScreen> {
           content: const Text(
             'If EC2 is turned off, login and most app features will not work until EC2 is turned on again.',
           ),
+          actionsAlignment: MainAxisAlignment.end,
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
               child: const Text('Cancel'),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(110, 44),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+              ),
               onPressed: () => Navigator.pop(context, true),
               child: const Text('Turn Off'),
             ),

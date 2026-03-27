@@ -1,6 +1,3 @@
-
-
-
 # HAUPokemon Monster’s App
 
 Project by: Apilado, Jabez Timothy and Quilantang, Grant Mihkael
@@ -23,6 +20,7 @@ HAUPokemon Monster’s App is a full-stack, cross-platform application for catch
 - Unified dialog layouts and cross-platform support
 
 See [docs/features-and-descriptions.md](docs/features-and-descriptions.md) for a full feature list and descriptions.
+Cloud architecture + pricing summary: [docs/aws-architecture-and-cost.md](docs/aws-architecture-and-cost.md)
 
 ## Tech Stack
 - **Flutter (Dart)** for the frontend (mobile, web, desktop)
@@ -74,6 +72,9 @@ For more details, see the documentation in the `docs/` and `aws/` folders.
 - Catch monsters using the map interface.
 - View and compete on the Top 10 leaderboard.
 - Start/stop EC2 backend from the app.
+
+## Release Artifacts
+- Android release APK: `release/HAUPokemon-v1-release.apk`
 
 ## Project Structure
 

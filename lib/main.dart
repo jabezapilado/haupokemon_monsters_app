@@ -427,6 +427,37 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _confirmLogout() async {
+    final shouldLogout = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Logout?'),
+          content: const Text('Are you sure you want to logout now?'),
+          actionsAlignment: MainAxisAlignment.end,
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(110, 44),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+              ),
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Logout'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (shouldLogout == true) {
+      await _logout();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -439,7 +470,7 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: 'My Account',
           ),
           IconButton(
-            onPressed: _logout,
+            onPressed: _confirmLogout,
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
           ),

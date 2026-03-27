@@ -38,12 +38,23 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
   Future<void> _deletePlayer(int playerId) async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: const Text('Delete Player'),
         content: const Text('Are you sure you want to delete this player?'),
+        actionsAlignment: MainAxisAlignment.end,
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          ElevatedButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(110, 44),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+            ),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Delete'),
+          ),
         ],
       ),
     );
