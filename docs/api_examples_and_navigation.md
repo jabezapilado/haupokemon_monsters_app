@@ -1,38 +1,52 @@
-Pokemon App API Examples and Navigation
+# API Examples and Navigation
 
-Base URL format
-- http://YOUR_EC2_PUBLIC_IP_OR_DOMAIN/api
+## Base URL
 
-Feature A: Player accounts and Players CRUD
+```text
+http://YOUR_EC2_PUBLIC_IP_OR_DOMAIN/api
+```
 
-Navigation flow
-- Login Screen -> Home Screen
-- Register Screen -> back to Login Screen
-- Home Screen -> Player List
-- Player List -> Edit Player
-- Player List -> Delete Player confirmation dialog
+## A) Player Accounts and Players CRUD
 
-A1) auth/register.php
-Request JSON
+### Navigation Flow
+- `Login Screen` -> `Home Screen`
+- `Register Screen` -> back to `Login Screen`
+- `Home Screen` -> `Player List`
+- `Player List` -> `Edit Player`
+- `Player List` -> `Delete Player` confirmation dialog
+
+### Endpoints
+
+#### `auth/register.php`
+Request:
+```json
 {
   "player_name": "Ash",
   "email": "ash@example.com",
   "password": "123456"
 }
-Response JSON (success)
+```
+
+Response (success):
+```json
 {
   "success": true,
   "message": "Registration successful",
   "player_id": 5
 }
+```
 
-A2) auth/login.php
-Request JSON
+#### `auth/login.php`
+Request:
+```json
 {
   "email": "ash@example.com",
   "password": "123456"
 }
-Response JSON (success)
+```
+
+Response (success):
+```json
 {
   "success": true,
   "message": "Login successful",
@@ -42,9 +56,11 @@ Response JSON (success)
     "email": "ash@example.com"
   }
 }
+```
 
-A3) players/read.php
-Response JSON
+#### `players/read.php`
+Response:
+```json
 {
   "success": true,
   "message": "Players fetched",
@@ -56,42 +72,56 @@ Response JSON
     }
   ]
 }
+```
 
-A4) players/update.php
-Request JSON
+#### `players/update.php`
+Request:
+```json
 {
   "player_id": 5,
   "player_name": "Ash K",
   "email": "ashk@example.com",
   "new_password": "7890"
 }
-Response JSON
+```
+
+Response:
+```json
 {
   "success": true,
   "message": "Player updated"
 }
+```
 
-A5) players/delete.php
-Request JSON
+#### `players/delete.php`
+Request:
+```json
 {
   "player_id": 5
 }
-Response JSON
+```
+
+Response:
+```json
 {
   "success": true,
   "message": "Player deleted"
 }
+```
 
-Feature B: Monsters CRUD
+## B) Monsters CRUD
 
-Navigation flow
-- Home Screen -> Monster List
-- Monster List -> Add Monster
-- Monster List -> Edit Monster
-- Monster List -> Delete Monster
+### Navigation Flow
+- `Home Screen` -> `Monster List`
+- `Monster List` -> `Add Monster`
+- `Monster List` -> `Edit Monster`
+- `Monster List` -> `Delete Monster`
 
-B1) monsters/create.php
-Request JSON
+### Endpoints
+
+#### `monsters/create.php`
+Request:
+```json
 {
   "monster_name": "Pikachu",
   "type": "Electric",
@@ -100,15 +130,20 @@ Request JSON
   "radius": 80,
   "picture": "https://example.com/pikachu.png"
 }
-Response JSON
+```
+
+Response:
+```json
 {
   "success": true,
   "message": "Monster created",
   "monster_id": 9
 }
+```
 
-B2) monsters/read.php
-Response JSON
+#### `monsters/read.php`
+Response:
+```json
 {
   "success": true,
   "message": "Monsters fetched",
@@ -124,9 +159,11 @@ Response JSON
     }
   ]
 }
+```
 
-B3) monsters/update.php
-Request JSON
+#### `monsters/update.php`
+Request:
+```json
 {
   "monster_id": 9,
   "monster_name": "Pikachu",
@@ -136,41 +173,56 @@ Request JSON
   "radius": 120,
   "picture": "https://example.com/pikachu.png"
 }
-Response JSON
+```
+
+Response:
+```json
 {
   "success": true,
   "message": "Monster updated"
 }
+```
 
-B4) monsters/delete.php
-Request JSON
+#### `monsters/delete.php`
+Request:
+```json
 {
   "monster_id": 9
 }
-Response JSON
+```
+
+Response:
+```json
 {
   "success": true,
   "message": "Monster deleted"
 }
+```
 
-Image upload note
-- Current code uses picture URL string in field picture.
-- Later, you can add multipart upload endpoint and store uploaded file path in picture.
+### Image Upload Note
+- Current implementation uses a `picture` URL string.
+- You can later add a multipart upload endpoint and store file paths in `picture`.
 
-Feature C: Catch Monsters
+## C) Catch Monsters
 
-Navigation flow
-- Home Screen -> Catch Monster
-- Catch Monster button -> get GPS -> call catch/catch_monster.php -> show result
+### Navigation Flow
+- `Home Screen` -> `Catch Monster`
+- Tap catch button -> read GPS -> call `catch/catch_monster.php` -> show result
 
-C1) catch/catch_monster.php
-Request JSON
+### Endpoint
+
+#### `catch/catch_monster.php`
+Request:
+```json
 {
   "player_id": 1,
   "latitude": 13.7563,
   "longitude": 100.5018
 }
-Response JSON (found)
+```
+
+Response (found):
+```json
 {
   "success": true,
   "message": "Monster caught successfully",
@@ -186,27 +238,37 @@ Response JSON (found)
     "picture": "https://example.com/pikachu.png"
   }
 }
-Response JSON (no monster)
+```
+
+Response (no monster):
+```json
 {
   "success": true,
   "message": "No monster found nearby",
   "found": false
 }
-Response JSON (duplicate)
+```
+
+Response (duplicate):
+```json
 {
   "success": true,
   "message": "Monster already caught before",
   "found": false,
   "duplicate": true
 }
+```
 
-Feature D: Top 10 leaderboard
+## D) Top 10 Leaderboard
 
-Navigation flow
-- Home Screen -> Leaderboard
+### Navigation Flow
+- `Home Screen` -> `Leaderboard`
 
-D1) leaderboard/top10.php
-Response JSON
+### Endpoint
+
+#### `leaderboard/top10.php`
+Response:
+```json
 {
   "success": true,
   "message": "Leaderboard fetched",
@@ -219,31 +281,40 @@ Response JSON
     }
   ]
 }
+```
 
-Feature E: EC2 automation and monitoring
+## E) EC2 Automation and Monitoring
 
-Navigation flow
-- Home Screen -> EC2 Control
-- EC2 Control -> Start Instance / Stop Instance / Refresh Status
+### Navigation Flow
+- `Home Screen` -> `EC2 Control`
+- `EC2 Control` -> Start / Stop / Refresh status
 
-E1) ec2/start.php
-Response JSON
+### Endpoints
+
+#### `ec2/start.php`
+Response:
+```json
 {
   "success": true,
   "message": "Start command sent"
 }
+```
 
-E2) ec2/stop.php
-Response JSON
+#### `ec2/stop.php`
+Response:
+```json
 {
   "success": true,
   "message": "Stop command sent"
 }
+```
 
-E3) ec2/status.php
-Response JSON
+#### `ec2/status.php`
+Response:
+```json
 {
   "success": true,
   "message": "Status fetched",
   "instance_state": "running"
 }
+```
